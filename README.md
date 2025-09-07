@@ -71,11 +71,42 @@ If you're familiar with deploying Node applications, the built-in app server is 
 Make sure to deploy the output of `npm run build`
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+app
+├── components
+├── features/
+│   ├── home/ # top
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── items/ # item一覧
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── item-detail/ # Item詳細
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── tags/ # タグ一覧
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── tag-detail/ タグ詳細ページ
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── users/ # ユーザー詳細
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   ├── me/ # マイページ
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── types/
+│   └── auth/ # 認証関連
+│       ├── components/
+│       ├── hooks/
+│       └── types/
+
 ```
 
 ## Styling
