@@ -1,17 +1,7 @@
-import { Button } from "@/components/ui";
 import { fetchItems } from "@/api/qiita";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-
-type Item = {
-  id: string;
-  title: string;
-  user: {
-    name: string;
-  };
-  created_at: string;
-  likes_count: number;
-};
+import type { Item } from "@/types";
 
 export function Home() {
   const [items, setItems] = useState<Item[]>([]);
