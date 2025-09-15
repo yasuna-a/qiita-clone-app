@@ -1,4 +1,6 @@
 import type { Item } from "@/types";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type ItemDetailProps = {
   item?: Item;
@@ -15,11 +17,20 @@ export function ItemDetail({ item, isLoading }: ItemDetailProps) {
   }
 
   return (
-    <div>
-      <h1>{item.title}</h1>
-      <p>{item.user.name}</p>
-      <p>{item.created_at}</p>
-      <div dangerouslySetInnerHTML={{ __html: item.body ?? "" }} />
+    <div className="bg-gray-100 p-4">
+      <article className="bg-white py-10 px-6 rounded-md max-w-screen-md mx-auto">
+        <header>
+          <p className="text-base font-bold text-black">{item.user.name}</p>
+          <h1 className="text-3xl font-bold text-black">{item.title}</h1>
+          <p className="text-sm text-black/60 mt-2">
+            <time dateTime={item.created_at}>{item.created_at}</time>
+          </p>
+        </header>
+
+        <div className="detail">
+          <Markdown remarkPlugins={[remarkGfm]}>{item.body ?? ""}</Markdown>
+        </div>
+      </article>
     </div>
   );
 }

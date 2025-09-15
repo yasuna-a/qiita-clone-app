@@ -20,5 +20,7 @@ export const useItemDetail = () => {
     getItem();
   }, [id]);
 
+  console.log(item);
+
   return { item, isLoading };
 };
