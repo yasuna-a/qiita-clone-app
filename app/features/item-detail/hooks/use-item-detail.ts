@@ -1,12 +1,13 @@
 import { useParams } from "react-router";
-import { fetchItem } from "@/api/qiita";
+import { fetchItem, fetchUser } from "@/api/qiita";
 import { useEffect, useState } from "react";
-import type { Item } from "@/types";
+import type { Item, User } from "@/types";
 
 export const useItemDetail = () => {
   const { id } = useParams();
-  const [item, setItem] = useState<Item>();
+  const [item, setItem] = useState<Item | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -15,6 +16,8 @@ export const useItemDetail = () => {
       setIsLoading(true);
       const item = await fetchItem(id);
       setItem(item);
+      const user = await fetchUser(item.user.id);
+      setUser(user);
       setIsLoading(false);
     };
     getItem();
@@ -22,5 +25,5 @@ export const useItemDetail = () => {
 
   console.log(item);
 
-  return { item, isLoading };
+  return { item, user, isLoading };
 };

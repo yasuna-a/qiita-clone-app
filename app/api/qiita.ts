@@ -17,3 +17,13 @@ export const fetchItem = async (id: string) => {
   const data = await response.json();
   return data;
 };
+
+export const fetchUser = async (id: string) => {
+  const response = await fetch(`https://qiita.com/api/v2/users/${id}`, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_QIITA_TOKEN}`,
+    },
+  });
+  const data = await response.json();
+  return data;
+};
