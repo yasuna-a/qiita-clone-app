@@ -1,13 +1,7 @@
-import type { Route } from "./+types/home";
 import { Home as Presenter } from "@/features/home";
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
-}
+import { useHome } from "@/features/home/hooks/use-home";
 
 export default function Home() {
-  return <Presenter />;
+  const { items } = useHome();
+  return <Presenter items={items} />;
 }

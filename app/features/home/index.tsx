@@ -3,17 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import type { Item } from "@/types";
 
-export function Home() {
-  const [items, setItems] = useState<Item[]>([]);
-
-  useEffect(() => {
-    const getItems = async () => {
-      const items = await fetchItems();
-      setItems(items);
-    };
-    getItems();
-  }, [fetchItems]);
-
+export function Home({ items }: { items: Item[] }) {
   return (
     <div>
       <h1>記事一覧</h1>

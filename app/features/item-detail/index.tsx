@@ -1,29 +1,25 @@
-import { useParams } from "react-router";
-import { fetchItem } from "@/api/qiita";
-import { useEffect, useState } from "react";
 import type { Item } from "@/types";
 
-export function ItemDetail() {
-  const { id } = useParams();
-  if (!id) return;
+type ItemDetailProps = {
+  item?: Item;
+  isLoading: boolean;
+};
 
-  const [item, setItem] = useState<Item>();
+export function ItemDetail({ item, isLoading }: ItemDetailProps) {
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    const getItem = async () => {
-      const item = await fetchItem(id);
-      setItem(item);
-      console.log(item);
-    };
-    getItem();
-  }, [id]);
+  if (!item) {
+    return <div>記事が見つかりません</div>;
+  }
 
   return (
     <div>
-      <h1>{item?.title}</h1>
-      <p>{item?.user.name}</p>
-      <p>{item?.created_at}</p>
-      <div dangerouslySetInnerHTML={{ __html: item?.body ?? "" }} />
+      <h1>{item.title}</h1>
+      <p>{item.user.name}</p>
+      <p>{item.created_at}</p>
+      <div dangerouslySetInnerHTML={{ __html: item.body ?? "" }} />
     </div>
   );
 }
