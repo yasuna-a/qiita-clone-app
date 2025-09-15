@@ -33,6 +33,10 @@
     @apply text-sm font-bold pt-4 pb-2;
   }
 
+  .detail pre {
+    @apply py-2;
+  }
+
   .detail pre code {
     @apply block bg-gray-900 text-white p-4 rounded-md overflow-x-auto text-sm;
   }
